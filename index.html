@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn-primary{
+            background-color: royalblue;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .btn-primary:hover{
+            background-color: rgb(181, 219, 9);
+            transition: .3s ease;
+            cursor: pointer;
+        }
+        .btn-secondary{
+            background-color: rgb(226, 44, 44);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .btn-secondary:hover{
+            background-color: rgb(9, 209, 86);
+            transition: .3s ease;
+            cursor: pointer;
+        }
+        .disabeled{
+            background-color: rgb(34, 36, 42);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+      .comment{
+          display: flex;
+      }
+      input{
+          padding: 8px;
+      }
+      #app{
+          margin: 10px 25%;
+          background-color: rgb(221, 220, 219);
+          border-radius: 10px;
+          width: 400px;
+      }
+       li{
+           list-style: none;
+       }
+       .comment1{
+           padding: 10px;
+       }
+     .interact{
+         display: flex;
+         justify-content: space-between;
+     }
+     .notify{
+         color: rgb(224, 14, 14);
+         float: right;
+         font-family: monospace;
+         font-size: 25px;
+      
+     }
+     .notify h5{
+         position: absolute;
+         right: 170px;
+         top: -10px;
+     }
+     .btn-notify{
+        background-color: rgb(10, 124, 177);
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         width: 30px;
+         height: 30px;
+         border-radius: 50%;
+         padding: 10px;
+         margin-top: -35px;
+         color: #fff;
+         font-family: sans-serif;
+        
+     }
+     .like1{
+         position: absolute;
+         right: 110px;
+         top: 50px;
+    
+         
+     }
+     .like1 h5{
+         margin-right: 10px;
+         font-size: 20px;
+         font-family: monospace;
+         margin-top: 15px;
+         color: rgb(32, 93, 134);
+     }
+     .like1 ul{
+        display: flex;
+     }
+     .btn-like{
+         background-color: rgb(58, 177, 10);
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         width: 30px;
+         height: 30px;
+         border-radius: 50%;
+         padding: 10px;
+         color: #fff;
+         font-size: 20px;
+     }
+    </style>
+</head>
+<body>
+    
+<div id="app">
+ 
+<div class="comment1">
+    <div class="notify"> <ul><h5>Comments</h5><ul class="btn-notify">{{comments.length}}</ul></div>
+    <div class="like1"> <ul><h5>Likes</h5><ul class="btn-like">{{like}}</ul></div>
+    <div  v-if="comments.length > 0"> 
+        <div class="comment" v-for="(comment,key) in comments">
+           <li> <h5> {{ comment }}</h5></li>
+           <ul><button class="btn-secondary" @click="this.comments.splice(key,1)" >Delete</button></ul>
+        </div>        
+    </div>
+
+  <div v-else><li> <h4> No comments to display</h4></li></div>
+  <div class="interact">
+      <div class="one"><input type="text"  @keyup.enter ="addComment" v-model="newComment" placeholder="Add New Comment Here ..."> <button :class="[newComment ?  'btn-primary' :  'disabeled']" :disabled="!newComment" @click="addComment()">Add Comment</button></div>
+      <div class="two"><button @click="Like" class="btn-primary">Like</button></div>
+  </div>
+
+</div>
+</div>
+
+
+   <script src="https://unpkg.com/vue@next"></script>
+    <script src="main.js"></script>
+</body>
+</html>
